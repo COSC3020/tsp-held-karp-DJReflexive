@@ -54,6 +54,6 @@ My Analysis...
 
 # Sources
 
-- None!
+- Google's Gemini AI - For the quick description of how to remove a specific element with .splice()
 
 # Plagiarism Acknowledgement
