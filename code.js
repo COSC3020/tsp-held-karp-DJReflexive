@@ -1,74 +1,60 @@
 
 function tsp_hk(distance_matrix) {
-    let size = distance_matrix.length;
-    
     // Sizes of 0 or 1 have no distance
+    let size = distance_matrix.length;
     if (size == 0 || size == 1) { return 0; }
+    
 
+    let bestMin = Infinity; // Initialize min
+
+    // Make Every City the Starting Node
+    for (let i = 0; i < size; i++) {
+        let cities = [];
+        for (let j = 0; j < size; j++) { cities.push(j); }
+
+        let currentMin = heldKarp(i, cities, distance_matrix);
+
+        // Replaces current min with new min
+        if (currentMin < bestMin) { bestMin = currentMin; }
+    }
     
-    let startingNode = findStartNode(distance_matrix);
-    
-    // If no edges exist, there is no distance
-    if (startingNode == null) { return 0; }
-    
-    // Calls the Held-Karp Algorithm
-    let result = heldKarp(distance_matrix, startingNode)
-    console.log("RESULT = " + result)
-    return result;
+    return bestMin;
 }
 
 
 // Based on the psuedocode in the README
-function heldKarp(cities, start) {
+function heldKarp(city, cities, matrix) {
     let size = cities.length;
-    let startIndex = cities.indexOf(start);
     
     // Base Case when there are two cities
     if (size == 2) {
         for (let i = 0; i < size; i++) {
-            if (cities[startIndex][i] > 0) {
-                return cities[startIndex][i];
+            if (cities[i] != city) {
+                return matrix[city][cities[i]];
             }
         }
     } else { 
-        /* 
-        return the minimum of
-        for each city in cities, unless the city is start
-        // reduce the set of cities that are unvisited by one  (the old start), set the new start, add on the distance from old start to new start
-        heldKarp(cities - start, city) + distance from start to city
-        */
-        
-        
-        for (let city = 0; city < size; city++) {
-            if (city == startIndex) continue; // Skips start city
+        let minDistance = Infinity;
 
-            let distToStart = cities[city][startIndex];
+        for (let i = 0; i < size; i++) {
+            if (i == city) continue; // Skips current city
 
-            // delete city
-            cities.splice(city, 1);
+            let newCities = [];
 
-            // delete the city in the other nodes
-            for (let i = 0; i < cities.length; i++) {
-                cities[i].splice(city, 1);
+            // Removes current city from cities list
+            for (let j = 0; j < size; j++) {
+                if (j == city) continue; // Skips current city
+
+                newCities.push(cities[j]);
             }
+            
+            let distance = matrix[city][cities[i]] + heldKarp(cities[i], newCities, matrix);
 
-            return heldKarp(cities, findStartNode(cities)) + distToStart;
+            // Find the min
+            if (minDistance > distance) { minDistance = distance; }
         }
+
+        return minDistance;
     }
 }
 
-
-// Finds a new start node
-function findStartNode(cities) {
-    let size = cities.length;
-
-    for (let i = 0; i < size; i++) {
-        for (let j = 0; j < size; j++) {
-            // Checks for an existing edge
-            if (cities[i][j] > 0) return cities[i]; 
-
-            // If there were no nodes in the matrix that contained an edge
-            if (i == size-1) return null;
-        }
-    }
-}
