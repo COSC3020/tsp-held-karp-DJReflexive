@@ -54,9 +54,9 @@ My Analysis...
 
 # Sources
 
-- KobeLimon21's Repository on GitHub (https://github.com/COSC3020/tsp-held-karp-KobeLimon21/blob/main/code.js) - Borrowed some ideas to help my tsp_hk() method to function properly. Specifically for having every city become the start city every iteration. I did not borrow from it for anything else, and checking whether a new best minimum value had been found.
-- Google's Gemini AI - For the quick description of how to remove a specific element with .splice()
+- KobeLimon21's Repository on GitHub (https://github.com/COSC3020/tsp-held-karp-KobeLimon21/blob/main/code.js) - Borrowed some ideas to help my tsp_hk() method to function properly. Specifically for having every city become the start city every iteration, and checking whether a new best minimum value had been found. I did not borrow from it for anything else.
 - https://www.youtube.com/watch?v=jUYAJ72m8P0&t=379s - For how to run the held-kelp algorithm by hand and giving insight to how this works.
+- https://www.geeksforgeeks.org/how-to-create-dictionary-and-add-key-value-pairs-dynamically/# - For documentation on use object literal notation as a dictionary.
 
 # Plagiarism Acknowledgement
 
