@@ -6,10 +6,10 @@ function tsp_hk(distance_matrix) {
     
 
     let bestMin = Infinity; // Initialize min
+    let dictionaryCache = {};
 
     // Make Every City the Starting Node
     for (let i = 0; i < size; i++) {
-        let dictionaryCache = {};
         let cities = [];
 
         // Fill array with the all cities
@@ -31,6 +31,7 @@ function heldKarp(city, cities, matrix, cache) {
 
     // Check if it exists already in cache
     let key = JSON.stringify([city, cities]);
+    console.log("cities: " + cities);
     if (cache[key] != undefined) { return cache[key]; }
     
 
