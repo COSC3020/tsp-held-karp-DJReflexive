@@ -9,6 +9,18 @@ assert(tsp_hk(dm) == 0);
 dm = [[0]];
 assert(tsp_hk(dm) == 0);
 
+dm = [[0, 0],
+      [0, 0]];
+assert(tsp_hk(dm) == 0);
+
+dm = [[0, 2],
+      [2, 0]];
+assert(tsp_hk(dm) == 2);
+
+dm = [[0, 7],
+      [7, 0]];
+assert(tsp_hk(dm) == 7);
+
 dm = [[0,0,0],
       [0,0,0],
       [0,0,0]];
@@ -18,6 +30,13 @@ dm = [[0,1,2],
       [1,0,2],
       [2,2,0]];
 assert(tsp_hk(dm) == 3);
+
+dm = [[0,0,0,0,0],
+      [0,0,0,0,0],
+      [0,0,0,0,0],
+      [0,0,0,0,0],
+      [0,0,0,0,0]];
+assert(tsp_hk(dm) == 0);
 
 // https://people.sc.fsu.edu/~jburkardt/datasets/tsp/tsp.html
 dm = [[0,3,4,2,7],
