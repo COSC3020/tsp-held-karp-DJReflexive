@@ -48,9 +48,23 @@ is the worst-case asymptotic memory complexity? Add your answer, including your
 reasoning, to this markdown file.
 
 
-## My Runtime Analysis
+# My Analysis
 
-My Analysis...
+### My Runtime Analysis
+
+Once my algorithm runs, it will check if the length is 0 or 1, which the shortest distance is 0. Past this, is a loop that will make every city the start city. This will happen $n$ times. Nested inside of this operation is a loop that creates an array filled with all the cities, which will take $n$ time. Also nested is the recursive heldKarp() function which is analyzed in the next paragraph.
+
+The heldKarp() recursive function occurs, which has a complexity of $\Theta(n * 2^n)$. The $n * 2^n$ comes from the fact that when the algorithm executes, that for $n$ cities, there are $2^n$ possible subsets of cities that need to be processed. 
+
+The final runtime complexity is $\Theta(n * (n + n*2^n))$, which simplifies down to $\Theta(n * n*2^n)$, and finally $\Theta(n^2 * 2^n)$.
+
+### My Memory Analysis
+
+The first notable use of memory is my dictionaryCache which when every subsets is calculated, it is cached. Meaning this cache has a complexity of $2^n$. 
+
+I also have a cities array in the tsp_hk() function which provides all the cities to the heldKarp() function. This array takes up $n$ space. Similarly is the newCities array in the heldKarp function, which after some processing, can also hold up to $n$ cities within it.
+
+The final memory complexity is $\Theta(n^2 * 2^n)$.
 
 # Sources
 
